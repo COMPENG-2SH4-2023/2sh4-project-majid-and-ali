@@ -9,9 +9,8 @@ using namespace std;
 #define DELAY_CONST 100000
 
 bool exitFlag;
-GameMechs board(20, 40, '#');
+GameMechs board;
 objPos** border;
-char user_input; // will hold user input
 
 
 
@@ -68,13 +67,13 @@ void Initialize(void)
 
 void GetInput(void)
 {
-   if (MacUILib_hasChar())
-    user_input = MacUILib_getChar();
+    if (MacUILib_hasChar())
+        board.setInput(MacUILib_getChar());
 }
 
 void RunLogic(void)
 {
-    if (user_input == ' ')
+    if (board.getInput() == ' ')
         exitFlag = true;
     else
         exitFlag = false;

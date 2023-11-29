@@ -5,6 +5,7 @@ Player::Player(GameMechs* thisGMRef)
 {
     mainGameMechsRef = thisGMRef;
     myDir = STOP;
+    mySpeed = MEDIUM;
 
     // more actions to be included
 }
