@@ -15,6 +15,7 @@ class Player
 
     public:
         enum Dir {UP, DOWN, LEFT, RIGHT, STOP};  // This is the direction state
+        enum speed {VERY_SLOW, SLOW, MEDIUM, FAST, VERY_FAST}; // Player speed
 
         Player(GameMechs* thisGMRef);
         ~Player();
