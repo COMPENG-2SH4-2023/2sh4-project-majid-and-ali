@@ -1,9 +1,12 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+
 #include "GameMechs.h"
 #include "objPos.h"
 #include "objPosArrayList.h"
+#include "Food.h"
+
 
 class Player
 {
@@ -14,23 +17,35 @@ class Player
     // You will include more data members and member functions to complete your design.
 
     public:
-        enum Dir {UP, DOWN, LEFT, RIGHT, STOP};  // This is the direction state
+        enum Dir {UP = 'w', DOWN = 's', LEFT = 'a', RIGHT = 'd', STOP};  // This is the direction state
         enum speed {VERY_SLOW, SLOW, MEDIUM, FAST, VERY_FAST}; // Player speed
 
-        Player(GameMechs* thisGMRef);
-        ~Player();
+        Player(GameMechs* thisGMRef, Food* thisFoodInst);
+        ~Player(); 
 
-        void getPlayerPos(objPos &returnPos); // Upgrade this in iteration 3.
+        objPosArrayList* getPlayerPos();
         void updatePlayerDir();
         void movePlayer();
 
+
+        bool checkFoodConsumption();
+        void increasePlayerLength();
+
+        bool checkSelfCollision();
+
     private:
-        objPos playerPos;   // Upgrade this in iteration 3.       
+        objPosArrayList* playerPosList;     
         enum Dir myDir;
         enum speed mySpeed;
+        char input; //access input updated in gameMechs
+        int sizeX;
+        int sizeY;
 
+        objPos currentHead; //Holds the position info of the current head, so algorithm of snake movement can be implemented
+        objPos foodPos;
         // Need a reference to the Main Game Mechanisms
         GameMechs* mainGameMechsRef;
+        Food* foodInst;
 };
 
 #endif
